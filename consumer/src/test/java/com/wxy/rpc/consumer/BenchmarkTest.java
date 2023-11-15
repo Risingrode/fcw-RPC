@@ -55,7 +55,7 @@ public class BenchmarkTest {
 
     @Benchmark
     public void testSayHello() {
-        helloController.hello("zhangsan");
+        helloController.hello("hello,fcw");
     }
 
     public static void main(String[] args) throws RunnerException {

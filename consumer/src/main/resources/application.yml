@@ -6,7 +6,7 @@ rpc:
     serialization: PROTOSTUFF
     transport: netty
     registry: zookeeper
-    registry-addr: 39.108.66.202:2181
+    registry-addr: 192.168.199.132:2183
     timeout: 5000
 
 # 设置控制台日志显示级别
