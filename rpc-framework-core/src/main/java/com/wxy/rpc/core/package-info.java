@@ -6,7 +6,6 @@
  * @ClassName package-info
  * @see com.wxy.rpc.core.codec.SharableRpcMessageCodec
  * @see com.wxy.rpc.core.discovery.ServiceDiscovery
- * @see com.wxy.rpc.core.discovery.ServiceDiscovery
  * @see com.wxy.rpc.core.extension.SPI
  * @see com.wxy.rpc.core.extension.ExtensionLoader
  * @see com.wxy.rpc.core.loadbalance.LoadBalance
