@@ -9,13 +9,16 @@ import lombok.NoArgsConstructor;
 /**
  * 请求元数据类
  *
+ * @Description 该类用于封装远程服务调用的相关信息
  * @author Wuxy
  * @version 1.0
  * @ClassName RequestMetadata
  * @Date 2023/1/7 14:06
  */
 @Data
+// 生成 Builder 模式相关的代码
 @Builder
+// 生成无参构造方法和全参构造方法。
 @NoArgsConstructor
 @AllArgsConstructor
 public class RequestMetadata {

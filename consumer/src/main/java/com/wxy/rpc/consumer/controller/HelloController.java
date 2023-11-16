@@ -20,12 +20,13 @@ import java.util.Map;
 @RequestMapping
 public class HelloController {
 
+    // 这个注解是自定义的 client包里面的
     @RpcReference
+    // api包里面的
     private HelloService helloService;
 
     @RpcReference
     private AbstractService abstractService;
-
 
     @RequestMapping("/hello/{name}")
     public String hello(@PathVariable("name") String name) {
@@ -33,6 +34,7 @@ public class HelloController {
         return helloService.sayHello(name);
     }
 
+    // 这个就返回个json数据
     @RequestMapping("/hello/test/{count}")
     public Map<String, Long> performTest(@PathVariable("count") Long count) {
         Map<String, Long> result = new HashMap<>();
@@ -42,11 +44,24 @@ public class HelloController {
             helloService.sayHello(Long.toString(i));
         }
         result.put("耗时", System.currentTimeMillis() - start);
+        // System.out.println(result);
         return result;
     }
 
     @RequestMapping("/abstracthello/{name}")
     public String abstractHello(@PathVariable("name") String name) {
         return abstractService.abstractHello(name);
+    }
+
+    // TODO ： 视图解析器-controller
+    // 下面是视图解析器测试内容
+    @RequestMapping("/hello/ViewTest/{num}")
+    public String viewTest(@PathVariable(name="num",required = false) String num) {
+        if("1".equals(num)){
+            return "index";
+        }else if("2".equals(num)){
+            return "hello,world";
+        }
+        return "数字不符合要求22232";
     }
 }

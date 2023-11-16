@@ -27,13 +27,19 @@ import java.util.concurrent.TimeUnit;
  * @ClassName BenchmarkTest
  * @since 2023/2/22 16:33
  */
+// 使用所有可用的基准测试模式
 @BenchmarkMode({Mode.All})
+// 在性能测试开始之前，JMH 会先运行几个迭代（`iterations`）来预热 JVM，以避免因为 JIT 编译的影响导致测试结果不准确。
 @Warmup(iterations = 3, time = 5, timeUnit = TimeUnit.SECONDS)
-//测量次数,每次测量的持续时间
+// 测量3次,每次测量的持续时间
 @Measurement(iterations = 3, time = 5, timeUnit = TimeUnit.SECONDS)
+// 并发线程
 @Threads(10000)
+// 每个测试运行在单独的JVM进程中
 @Fork(1)
+// 指定类的测试范围
 @State(Scope.Benchmark)
+// 输出结果的时间单位
 @OutputTimeUnit(TimeUnit.SECONDS)
 @Slf4j
 public class BenchmarkTest {

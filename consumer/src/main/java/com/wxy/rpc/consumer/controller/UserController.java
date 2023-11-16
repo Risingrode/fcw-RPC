@@ -20,7 +20,7 @@ public class UserController {
     @RpcReference
     private UserService userService;
 
-
+    // queryUser() 是api包里面的UserService, 然后这个service要与impl连接，这个impl是 provider里面的
     @RequestMapping("/user/getUser")
     public User getUser() {
 

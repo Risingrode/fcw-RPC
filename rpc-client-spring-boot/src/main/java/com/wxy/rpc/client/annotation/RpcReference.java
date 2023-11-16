@@ -4,13 +4,17 @@ import java.lang.annotation.*;
 
 /**
  * RPC 引用注解，自动注入对应的实现类
- *
+ * @Description 该注解用于标识需要引用的远程服务，并实现自动注入相应的实现类。
  * @author Wuxy
  * @version 1.0
  * @ClassName RpcReference
  * @Date 2023/1/6 17:22
  */
+// 该注解可以用于类的字段（Field）、方法（Method）和其他注解（Annotation Type）。
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE})
+// 1、RetentionPolicy.SOURCE：注解只保留在源文件，当Java文件编译成class文件的时候，注解被遗弃；
+// 2、RetentionPolicy.CLASS：注解被保留到class文件，但jvm加载class文件时候被遗弃，这是默认的生命周期；
+// 3、RetentionPolicy.RUNTIME：注解不仅被保存到class文件中，jvm加载class文件之后，仍然存在；
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited

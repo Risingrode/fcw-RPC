@@ -47,8 +47,9 @@ public class BenchmarkAnnotationConfig {
             } catch (IllegalStateException e) {
                 // for ignoreResourceNotFound
                 Throwable cause = e.getCause();
-                if (cause instanceof FileNotFoundException)
+                if (cause instanceof FileNotFoundException) {
                     throw (FileNotFoundException) e.getCause();
+                }
                 throw e;
             }
         }

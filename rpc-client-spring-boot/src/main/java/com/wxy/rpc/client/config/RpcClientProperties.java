@@ -12,6 +12,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @Date 2023/1/7 15:12
  */
 @Data
+// 将配置文件中以特定前缀开头的属性映射到一个 Java 类的字段或属性上。
+// 这个映射的是yml配置文件以及properties文件，并且是以rpc.client为前缀的
 @ConfigurationProperties(prefix = "rpc.client")
 public class RpcClientProperties {
 

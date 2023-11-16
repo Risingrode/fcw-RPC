@@ -14,6 +14,7 @@ import com.wxy.rpc.core.loadbalance.impl.ConsistentHashLoadBalance;
 import com.wxy.rpc.core.loadbalance.LoadBalance;
 import com.wxy.rpc.core.loadbalance.impl.RandomLoadBalance;
 import com.wxy.rpc.core.loadbalance.impl.RoundRobinLoadBalance;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -50,6 +51,14 @@ import org.springframework.core.env.Environment;
  * @ClassName RpcClientAutoConfiguration
  * @Date 2023/1/8 12:06
  */
+
+/*
+    1. 根据配置创建不同的负载均衡策略的 Bean（Random、RoundRobin、ConsistentHash）。
+    2. 根据配置创建不同的服务发现的 Bean（Zookeeper、Nacos）。
+    3. 根据配置创建不同的 RPC 客户端的 Bean（Netty、Http、Socket）。
+    4. 创建客户端代理工厂、Bean后置处理器以及在应用退出时销毁资源的 Bean。
+*/
+
 @Configuration
 @EnableConfigurationProperties(RpcClientProperties.class)
 public class RpcClientAutoConfiguration {
@@ -76,9 +85,14 @@ public class RpcClientAutoConfiguration {
     @Autowired
     RpcClientProperties rpcClientProperties;
 
+    // 声明该方法返回一个 Bean
     @Bean(name = "loadBalance")
+    // 在多个同类型的 Bean 中，优先选择该 Bean。
     @Primary
+    // 当容器中不存在同类型的 Bean 时创建这个 Bean。
     @ConditionalOnMissingBean // 不指定 value 则值默认为当前创建的类
+    // 当配置文件中属性 rpc.client.loadbalance 的值为 "random" 时，创建这个 Bean。
+    // matchIfMissing = true 表示如果未配置该属性，则同样创建这个 Bean。
     @ConditionalOnProperty(prefix = "rpc.client", name = "loadbalance", havingValue = "random", matchIfMissing = true)
     public LoadBalance randomLoadBalance() {
         return new RandomLoadBalance();
