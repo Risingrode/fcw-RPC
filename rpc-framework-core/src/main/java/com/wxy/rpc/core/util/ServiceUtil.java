@@ -15,6 +15,7 @@ import java.util.Map;
  * @Date 2023/1/5 20:57
  */
 public class ServiceUtil {
+    // Gson 对象 用于序列化和反序列化
     public static final Gson gson = new Gson();
 
 
@@ -36,6 +37,7 @@ public class ServiceUtil {
      * @param serviceInfo serviceInfo实列
      * @return Map
      */
+    // 抑制编译器产生关于未经检查的操作的警告
     @SuppressWarnings({"rawtypes", "unchecked"})
     public static Map toMap(ServiceInfo serviceInfo) {
         if (serviceInfo == null) {

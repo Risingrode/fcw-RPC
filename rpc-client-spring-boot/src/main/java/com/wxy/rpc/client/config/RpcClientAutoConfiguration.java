@@ -60,6 +60,7 @@ import org.springframework.core.env.Environment;
 */
 
 @Configuration
+//  告诉 Spring Boot 将 RpcClientProperties 类注册为配置属性类，以便在其他地方通过 @Autowired 注解来注入这个配置类的实例，并使用其中的属性值。
 @EnableConfigurationProperties(RpcClientProperties.class)
 public class RpcClientAutoConfiguration {
 
@@ -73,7 +74,6 @@ public class RpcClientAutoConfiguration {
      * @deprecated 弃用，使用被 {@link org.springframework.boot.context.properties.ConfigurationProperties} 标注的属性类代替，
      * 生成 metadata。
      */
-//    @Bean
     @Deprecated
     public RpcClientProperties rpcClientProperties(Environment environment) {
         // 获取绑定器，将对应的属性绑定到指定类上

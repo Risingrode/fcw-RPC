@@ -25,6 +25,7 @@ public interface LoadBalance {
      * @param request rpc请求
      * @return 按策略返回的服务信息对象
      */
+    // TODO : 这个方法哪个地方实现了？
     ServiceInfo select(List<ServiceInfo> invokers, RpcRequest request);
 
 }

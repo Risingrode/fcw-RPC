@@ -12,8 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @Date 2023/1/7 15:12
  */
 @Data
-// 将配置文件中以特定前缀开头的属性映射到一个 Java 类的字段或属性上。
-// 这个映射的是yml配置文件以及properties文件，并且是以rpc.client为前缀的
+// 用于绑定配置文件中特定前缀的属性到 Java 类的注解
 @ConfigurationProperties(prefix = "rpc.client")
 public class RpcClientProperties {
 
@@ -49,6 +48,7 @@ public class RpcClientProperties {
 
     public RpcClientProperties() {
         this.loadbalance = "random";
+        // 把信息转化成二进制
         this.serialization = "HESSIAN";
         this.transport = "netty";
         this.registry = "zookeeper";

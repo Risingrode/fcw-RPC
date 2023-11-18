@@ -41,12 +41,14 @@ import java.util.List;
  * @see io.netty.channel.ChannelInboundHandlerAdapter
  * @see io.netty.channel.ChannelOutboundHandlerAdapter
  */
+// 标记为可共享的，可以被多个 Channel 共享使用
 @Sharable
 public class SharableRpcMessageCodec extends MessageToMessageCodec<ByteBuf, RpcMessage> {
 
     // 编码器为出站处理，将 RpcMessage 编码为 ByteBuf 对象
     @Override
     protected void encode(ChannelHandlerContext ctx, RpcMessage msg, List<Object> out) throws Exception {
+        // 分配 ByteBuf 对象
         ByteBuf buf = ctx.alloc().buffer();
         MessageHeader header = msg.getHeader();
         // 4字节 魔数
@@ -78,6 +80,7 @@ public class SharableRpcMessageCodec extends MessageToMessageCodec<ByteBuf, RpcM
         // 不固定字节 消息内容字节数组
         buf.writeBytes(bytes);
 
+        // TODO : 不明白 为什么要添加进去
         // 传递到下一个出站处理器
         out.add(buf);
     }

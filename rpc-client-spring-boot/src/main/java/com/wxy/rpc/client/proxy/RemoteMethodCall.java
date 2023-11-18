@@ -36,7 +36,7 @@ public class RemoteMethodCall {
      */
     public static Object remoteCall(ServiceDiscovery discovery, RpcClient rpcClient, String serviceName,
                                     RpcClientProperties properties, Method method, Object[] args) {
-        // 构建请求头
+        // 构建请求头 设置序列化算法
         MessageHeader header = MessageHeader.build(properties.getSerialization());
         // 构建请求体
         RpcRequest request = new RpcRequest();
@@ -58,6 +58,7 @@ public class RemoteMethodCall {
         rpcMessage.setBody(request);
 
         // 构建请求元数据
+        // 建造者模式 可以进行链式调用
         RequestMetadata metadata = RequestMetadata.builder()
                 .rpcMessage(rpcMessage)
                 .serverAddr(serviceInfo.getAddress())

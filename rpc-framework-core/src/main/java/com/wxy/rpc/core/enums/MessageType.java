@@ -46,6 +46,7 @@ public enum MessageType {
      * @throws IllegalArgumentException 非法的消息类型
      */
     public static MessageType parseByType(byte type) throws IllegalArgumentException {
+        // MessageType.values() 返回 MessageType 枚举类中的所有枚举值
         for (MessageType messageType : MessageType.values()) {
             if (messageType.getType() == type) {
                 return messageType;

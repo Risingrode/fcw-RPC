@@ -27,14 +27,18 @@ import java.util.concurrent.ConcurrentHashMap;
  * @Date 2023/1/6 19:07
  */
 @Slf4j
+// 继承的这个东西能够自动释放处理完毕的消息对象，还可以处理特定类型的消息
 public class RpcResponseHandler extends SimpleChannelInboundHandler<RpcMessage> {
 
     /**
      * 存放未处理的响应请求
      */
+    // 在发起一个 RPC 请求时，会创建一个 Promise 对象，并将其存放到 UNPROCESSED_RPC_RESPONSES 中
+    // CurrentHashMap 是线程安全的 分段锁 适用于读多写少
     public static final Map<Integer, Promise<RpcMessage>> UNPROCESSED_RPC_RESPONSES = new ConcurrentHashMap<>();
 
     @Override
+    // 读取到消息时会调用这个方法
     protected void channelRead0(ChannelHandlerContext ctx, RpcMessage msg) throws Exception {
         try {
             MessageType type = MessageType.parseByType(msg.getHeader().getMessageType());
@@ -46,6 +50,7 @@ public class RpcResponseHandler extends SimpleChannelInboundHandler<RpcMessage> 
                 if (promise != null) {
                     Exception exception = ((RpcResponse) msg.getBody()).getExceptionValue();
                     if (exception == null) {
+                        // 将成功的响应消息设置到 Promise 对象中
                         promise.setSuccess(msg);
                     } else {
                         promise.setFailure(exception);
@@ -69,7 +74,10 @@ public class RpcResponseHandler extends SimpleChannelInboundHandler<RpcMessage> 
      */
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        // 判断事件类型是否是空闲状态事件
+        // IdleStateEvent 是 Netty 提供的空闲状态检测的处理器
         if (evt instanceof IdleStateEvent) {
+            // IdleState.WRITER_IDLE: 写空闲状态，表示一段时间内没有数据写入 读操作同理
             if (((IdleStateEvent) evt).state() == IdleState.WRITER_IDLE) {
                 log.warn("Write idle happen [{}].", ctx.channel().remoteAddress());
                 // 构造 心跳检查 RpcMessage
@@ -77,11 +85,13 @@ public class RpcResponseHandler extends SimpleChannelInboundHandler<RpcMessage> 
                 MessageHeader header = MessageHeader.build(SerializationType.KRYO.name());
                 header.setMessageType(MessageType.HEARTBEAT_REQUEST.getType());
                 rpcMessage.setHeader(header);
+                // 设置一个心跳检测的数据常量
                 rpcMessage.setBody(ProtocolConstants.PING);
                 // 发送心跳检测请求
                 ctx.writeAndFlush(rpcMessage).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
             }
         } else {
+            // 保留父类ChannelHandler对于其他用户自定义事件的默认处理行为
             super.userEventTriggered(ctx, evt);
         }
     }

@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
  */
 @Data
 // 生成 Builder 模式相关的代码
+// Lombok 自动生成一个具有链式调用方法的建造者类，该建造者类可以用于创建对象，同时省去了手动编写构建器的繁琐工作。
 @Builder
 // 生成无参构造方法和全参构造方法。
 @NoArgsConstructor
