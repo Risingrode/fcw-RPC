@@ -17,13 +17,15 @@ import java.nio.charset.StandardCharsets;
  * @Date 2023/1/5 12:23
  */
 public class JsonSerialization implements Serialization {
-
+    // TODO　： 不太明白
     /**
      * 自定义 JavClass 对象序列化，解决 Gson 无法序列化 Class 信息
      */
     static class ClassCodec implements JsonSerializer<Class<?>>, JsonDeserializer<Class<?>> {
+        // 禁止抛出受检查异常
         @SneakyThrows
         @Override
+        // json -> class
         public Class<?> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             String name = json.getAsString();
             return Class.forName(name);
@@ -36,9 +38,11 @@ public class JsonSerialization implements Serialization {
         }
     }
 
+    // 下面2个用于自定义的序列化和反序列化
     @Override
     public <T> byte[] serialize(T object) {
         try {
+            // 注册类型适配器,创建gson实例
             Gson gson = new GsonBuilder().registerTypeAdapter(Class.class, new ClassCodec()).create();
             String json = gson.toJson(object);
             return json.getBytes(StandardCharsets.UTF_8);

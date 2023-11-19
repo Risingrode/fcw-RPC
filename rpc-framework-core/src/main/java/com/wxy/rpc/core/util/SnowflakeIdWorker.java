@@ -6,6 +6,7 @@ package com.wxy.rpc.core.util;
  * @ClassName SnowflakeIdWorker
  * @Date 2023/1/5 18:21
  */
+// 一个用于生成分布式唯一ID的工具类，其实现基于Snowflake算法
 public class SnowflakeIdWorker {
 
     // ==============================Fields===========================================
@@ -135,10 +136,10 @@ public class SnowflakeIdWorker {
         lastTimestamp = timestamp;
 
         // 移位并通过或运算拼到一起组成64位的ID
-        return ((timestamp - twEpoch) << timestampLeftShift) //
-                | (datacenterId << datacenterIdShift) //
-                | (workerId << workerIdShift) //
-                | sequence;
+        return ((timestamp - twEpoch) << timestampLeftShift) // 41位时间戳
+                | (datacenterId << datacenterIdShift) // 5位数据中心ID
+                | (workerId << workerIdShift) // 5位机器ID
+                | sequence; // 12位序列号
     }
 
     /**

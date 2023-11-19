@@ -2,6 +2,8 @@
 
 ## 介绍
 
+声明:**这个打算用作自己找工作的项目,顺便学习一下其它知识点,源代码是找的[这个大佬](https://github.com/viego1999/wxy-rpc),非常感谢大佬开源,写的太优雅了。**
+
 一款基于 Netty + Zookeeper + SpringBoot 实现的自定义 RPC 框架。
 
 同时引入其他通信协议，有 Http、Socket 等，注册中心引入了 Zookeeper、Nacos、Eureka等。

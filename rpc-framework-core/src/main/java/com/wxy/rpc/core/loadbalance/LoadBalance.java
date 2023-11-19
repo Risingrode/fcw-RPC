@@ -25,7 +25,7 @@ public interface LoadBalance {
      * @param request rpc请求
      * @return 按策略返回的服务信息对象
      */
-    // TODO : 这个方法哪个地方实现了？
+    // 这个函数在AbstractLoadBalance 里面实现了，一致性哈希负载均衡算法
     ServiceInfo select(List<ServiceInfo> invokers, RpcRequest request);
 
 }

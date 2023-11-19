@@ -78,7 +78,7 @@ public class NacosServiceRegistry implements ServiceRegistry {
             instance.setPort(serviceInfo.getPort());
             instance.setHealthy(true); // 服务是否健康，和服务发现有关，默认为 true
             instance.setMetadata(ServiceUtil.toMap(serviceInfo));
-
+            // 注销这个服务实例
             namingService.deregisterInstance(instance.getServiceName(), instance);
             log.warn("Successfully unregistered {} service.", instance.getServiceName());
         } catch (NacosException e) {

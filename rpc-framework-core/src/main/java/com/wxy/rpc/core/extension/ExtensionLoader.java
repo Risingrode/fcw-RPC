@@ -147,6 +147,7 @@ public class ExtensionLoader<T> {
         // 如果为空则通过反射机制创建一个
         if (instance == null) {
             try {
+                // 在键值不存在的情况下插入值
                 EXTENSION_INSTANCES.putIfAbsent(clazz, clazz.newInstance());
                 instance = (T) EXTENSION_INSTANCES.get(clazz);
             } catch (InstantiationException | IllegalAccessException e) {
@@ -158,6 +159,8 @@ public class ExtensionLoader<T> {
 
     /**
      * 获取当前接口的所有扩展实现类类型
+     * <p>
+     * 双重检查锁定
      */
     private Map<String, Class<?>> getExtensionClasses() {
         // 先去 Holder 中读取当前接口的所有扩展实现类类型
@@ -219,6 +222,7 @@ public class ExtensionLoader<T> {
                     // 过滤注释，截取 # 号前面的内容
                     line = line.substring(0, ci);
                 }
+                // 去除两端的空格
                 line = line.trim();
                 if (line.length() > 0) {
                     try {

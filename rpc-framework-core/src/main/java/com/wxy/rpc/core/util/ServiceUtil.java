@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author Wuxy
  * @version 1.0
- * @ClassName ServiceUtil
+ * @ClassName  ServiceUtil
  * @Date 2023/1/5 20:57
  */
 public class ServiceUtil {
@@ -38,11 +38,14 @@ public class ServiceUtil {
      * @return Map
      */
     // 抑制编译器产生关于未经检查的操作的警告
+    // rawtypes 是忽略与原始类型相关的警告信息
     @SuppressWarnings({"rawtypes", "unchecked"})
     public static Map toMap(ServiceInfo serviceInfo) {
         if (serviceInfo == null) {
             return Collections.emptyMap();
         }
+        // gson.toJson(serviceInfo): 将 serviceInfo 对象转换为 JSON 格式的字符串。
+        // gson.fromJson(..., Map.class): 将上一步得到的 JSON 字符串转换为 Map 对象。
         Map map = gson.fromJson(gson.toJson(serviceInfo), Map.class);
         map.put("port", serviceInfo.getPort().toString());
         return map;

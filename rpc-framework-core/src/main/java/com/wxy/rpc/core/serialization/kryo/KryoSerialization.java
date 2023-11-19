@@ -28,6 +28,7 @@ public class KryoSerialization implements Serialization {
     // kryo 线程不安全，所以使用 ThreadLocal 保存 kryo 对象
     private final ThreadLocal<Kryo> kryoThreadLocal = ThreadLocal.withInitial(() -> {
         Kryo kryo = new Kryo();
+        // 主要是序列化这两种类型
         kryo.register(RpcRequest.class);
         kryo.register(RpcResponse.class);
         return kryo;
@@ -38,9 +39,11 @@ public class KryoSerialization implements Serialization {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             Output output = new Output(baos);
+            // 获取当前线程的 kryo 对象
             Kryo kryo = kryoThreadLocal.get();
-            // 将对象序列化为 byte 数组
+            // 将对象object序列化到Output流中
             kryo.writeObject(output, object);
+            // 清楚线程中保存的对象
             kryoThreadLocal.remove();
             return output.toBytes();
         } catch (Exception e) {

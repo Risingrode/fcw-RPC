@@ -41,7 +41,7 @@ public enum SerializationType {
     SerializationType(byte type) {
         this.type = type;
     }
-
+    // 通过序列化名称获取序列化算法枚举类
     public static SerializationType parseByName(String serializeName) {
         for (SerializationType serializationType : SerializationType.values()) {
             if (serializationType.name().equalsIgnoreCase(serializeName)) {

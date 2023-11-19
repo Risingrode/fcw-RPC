@@ -24,21 +24,20 @@ import org.apache.curator.x.discovery.details.JsonInstanceSerializer;
  */
 @Slf4j
 public class ZookeeperServiceRegistry implements ServiceRegistry {
-
+    // 会话超时时间 单位是ms
     private static final int SESSION_TIMEOUT = 60 * 1000;
-
+    // 连接超时时间
     private static final int CONNECT_TIMEOUT = 15 * 1000;
-
+    // 重试间隔时间
     private static final int BASE_SLEEP_TIME = 3 * 1000;
-
+    // 最大重试次数
     private static final int MAX_RETRY = 10;
-
+    // 服务注册的根路径
     private static final String BASE_PATH = "/wxy_rpc";
-
+    // zk 客户端
     private CuratorFramework client;
-
+    // ServiceDiscovery 用于服务发现的工具类
     private ServiceDiscovery<ServiceInfo> serviceDiscovery;
-
 
     /**
      * 构造方法，传入 zk 的连接地址，如：127.0.0.1:2181
@@ -58,7 +57,7 @@ public class ZookeeperServiceRegistry implements ServiceRegistry {
             serviceDiscovery = ServiceDiscoveryBuilder.builder(ServiceInfo.class)
                     .client(client)
                     .serializer(new JsonInstanceSerializer<>(ServiceInfo.class))
-                    .basePath(BASE_PATH)
+                    .basePath(BASE_PATH)// 服务的基本路径
                     .build();
 
             serviceDiscovery.start();
@@ -70,6 +69,7 @@ public class ZookeeperServiceRegistry implements ServiceRegistry {
     @Override
     public void register(ServiceInfo serviceInfo) {
         try {
+            // 描述服务实例的类
             ServiceInstance<ServiceInfo> serviceInstance = ServiceInstance.<ServiceInfo>builder()
                     .name(serviceInfo.getServiceName())
                     .address(serviceInfo.getAddress())

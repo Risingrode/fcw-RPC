@@ -71,14 +71,12 @@ public class ZookeeperServiceDiscovery implements ServiceDiscovery {
     public ZookeeperServiceDiscovery(String registryAddress, LoadBalance loadBalance) {
         try {
             this.loadBalance = loadBalance;
-
             // 创建zk客户端示例
             client = CuratorFrameworkFactory
                     .newClient(registryAddress, SESSION_TIMEOUT, CONNECT_TIMEOUT,
                             new ExponentialBackoffRetry(BASE_SLEEP_TIME, MAX_RETRY));
             // 开启客户端通信
             client.start();
-
             // 构建 ServiceDiscovery 服务注册中心
             serviceDiscovery = ServiceDiscoveryBuilder.builder(ServiceInfo.class)
                     .client(client)

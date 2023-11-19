@@ -24,6 +24,7 @@ public class HessianSerialization implements Serialization {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             HessianSerializerOutput hso = new HessianSerializerOutput(baos);
             hso.writeObject(object);
+            // 在序列化过程中，数据通常被先写入缓冲区，最后再刷新到输出流。
             hso.flush();
             return baos.toByteArray();
         } catch (IOException e) {

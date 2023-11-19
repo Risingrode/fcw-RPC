@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @Date 2023/1/8 12:10
  */
 public class ConsistentHashLoadBalance extends AbstractLoadBalance {
-
+    // TODO ： 难点 需要多次梳理
     private final Map<String, ConsistentHashSelector> selectors = new ConcurrentHashMap<>();
 
     @Override
@@ -79,6 +79,7 @@ public class ConsistentHashLoadBalance extends AbstractLoadBalance {
 
             for (ServiceInfo invoker : invokers) {
                 String address = invoker.getAddress();
+                // 内部for会产生4个节点，外部要除以4
                 for (int i = 0; i < replicaNumber / 4; i++) {
                     // 对 address + i 进行 md5 运算，得到一个长度为16的字节数组
                     byte[] digest = md5(address + i);
@@ -110,6 +111,7 @@ public class ConsistentHashLoadBalance extends AbstractLoadBalance {
             } catch (NoSuchAlgorithmException e) {
                 throw new RuntimeException(e);
             }
+            // md 返回的就是16个字节的字节数组,每个字节是2个16进制数
             return md.digest();
         }
 

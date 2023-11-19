@@ -26,6 +26,7 @@ public class ProtostuffSerialization implements Serialization {
     @Override
     public <T> byte[] serialize(T object) {
         try {
+            // Schema 充当了序列化和反序列化的元数据
             Schema schema = RuntimeSchema.getSchema(object.getClass());
             return ProtostuffIOUtil.toByteArray(object, schema, BUFFER);
         } catch (Exception e) {
