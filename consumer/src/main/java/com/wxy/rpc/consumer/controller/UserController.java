@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * @author Wuxy
- * @version 1.0
- * @ClassName UserController
- * @Date 2023/1/8 23:47
+ *
+ * @Author: fcw
+ * @Description:
+ * @Date: 2023-11-23   17:48
  */
+
 @RestController
 public class UserController {
 

@@ -15,6 +15,7 @@ import java.net.UnknownHostException;
  * @Date 2023/1/6 23:33
  */
 @Data
+//跟配置文件中的属性进行绑定，指定前缀
 @ConfigurationProperties(prefix = "rpc.server")
 public class RpcServerProperties {
 

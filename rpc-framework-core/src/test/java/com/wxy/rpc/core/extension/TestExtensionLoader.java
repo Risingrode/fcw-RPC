@@ -16,7 +16,7 @@ import java.util.Arrays;
  * @Date 2023/1/11 20:21
  */
 public class TestExtensionLoader {
-
+    // TODO　：　测试出错
     public static void main(String[] args) {
         ExtensionLoader<LoadBalance> loadBalanceExtensionLoader = ExtensionLoader.getExtensionLoader(LoadBalance.class);
         LoadBalance random = loadBalanceExtensionLoader.getExtension("random");

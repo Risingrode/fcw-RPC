@@ -6,6 +6,7 @@
  * @ClassName package-info
  * @see com.wxy.rpc.core.codec.SharableRpcMessageCodec
  * @see com.wxy.rpc.core.discovery.ServiceDiscovery
+ * 动态加载配置，防止硬编码问题，提高代码的可扩展性
  * @see com.wxy.rpc.core.extension.SPI
  * @see com.wxy.rpc.core.extension.ExtensionLoader
  * @see com.wxy.rpc.core.loadbalance.LoadBalance

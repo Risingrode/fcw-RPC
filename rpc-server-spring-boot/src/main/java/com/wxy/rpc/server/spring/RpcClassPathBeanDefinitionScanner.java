@@ -14,8 +14,10 @@ import java.lang.annotation.Annotation;
  * @ClassName RpcClassPathBeanDefinitionScanner
  * @Date 2023/1/9 17:56
  */
+// ClassPathBeanDefinitionScanner 是 Spring 提供的类路径下的包扫描器
 public class RpcClassPathBeanDefinitionScanner extends ClassPathBeanDefinitionScanner {
 
+    // 这是一个泛型类型，表示可以持有任何继承自 Annotation 接口的类的 Class 对象
     private Class<? extends Annotation> annotationType;
 
     public RpcClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry) {

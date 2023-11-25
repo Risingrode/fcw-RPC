@@ -27,6 +27,7 @@ import org.springframework.context.annotation.Primary;
  * @Date 2023/1/8 12:34
  */
 @Configuration
+//　允许通过 RpcServerProperties 类读取配置文件中的属性。
 @EnableConfigurationProperties(RpcServerProperties.class)
 public class RpcServerAutoConfiguration {
 
@@ -37,8 +38,12 @@ public class RpcServerAutoConfiguration {
      * 创建 ServiceRegistry 实例 bean，当没有配置时默认使用 zookeeper 作为配置中心
      */
     @Bean(name = "serviceRegistry")
+    //　当多个 ServiceRegistry 实例 bean 存在时，优先使用此 bean
     @Primary
+    //　当容器中没有 ServiceRegistry 实例 bean 时，创建此 bean
     @ConditionalOnMissingBean
+    // 当配置文件中 rpc.server.registry 属性值为 zookeeper 时，创建此 bean
+    // matchIfMissing = true 的含义是，如果配置文件中没有 rpc.server.registry 属性，也视为条件匹配，即使用默认值
     @ConditionalOnProperty(prefix = "rpc.server", name = "registry", havingValue = "zookeeper", matchIfMissing = true)
     public ServiceRegistry zookeeperServiceRegistry() {
         return new ZookeeperServiceRegistry(properties.getRegistryAddr());
@@ -63,6 +68,7 @@ public class RpcServerAutoConfiguration {
     @Bean(name = "rpcServer")
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "rpc.server", name = "transport", havingValue = "http")
+    // 当 classpath 中存在 org.apache.catalina.startup.Tomcat 类时，创建此 bean
     @ConditionalOnClass(name = {"org.apache.catalina.startup.Tomcat"})
     public RpcServer httpRpcServer() {
         return new HttpRpcServer();
@@ -70,6 +76,7 @@ public class RpcServerAutoConfiguration {
 
     @Bean(name = "rpcServer")
     @ConditionalOnMissingBean
+    // 不清楚 prefix 的具体作用，不知道会扫描哪个配置文件
     @ConditionalOnProperty(prefix = "rpc.server", name = "transport", havingValue = "socket")
     public RpcServer socketRpcServer() {
         return new SocketRpcServer();
@@ -77,6 +84,7 @@ public class RpcServerAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
+    // 表示当Spring容器中存在ServiceRegistry和RpcServer类型的Bean时，这个Bean才会被创建
     @ConditionalOnBean({ServiceRegistry.class, RpcServer.class})
     public RpcServerBeanPostProcessor rpcServerBeanPostProcessor(@Autowired ServiceRegistry serviceRegistry,
                                                                  @Autowired RpcServer rpcServer,

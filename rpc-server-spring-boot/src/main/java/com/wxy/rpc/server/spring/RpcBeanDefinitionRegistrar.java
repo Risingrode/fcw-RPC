@@ -21,7 +21,7 @@ import org.springframework.core.type.StandardAnnotationMetadata;
  */
 @Slf4j
 public class RpcBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoaderAware {
-
+    // 资源加载器 用于加载类路径下的资源 如 xml 配置文件 等
     private ResourceLoader resourceLoader;
 
     @Override
@@ -37,20 +37,22 @@ public class RpcBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
      */
     @Override
     public void registerBeanDefinitions(AnnotationMetadata annotationMetadata, BeanDefinitionRegistry registry) {
-        // 获取 RpcComponentScan 注解的属性和值
+        // 获取 RpcComponentScan 注解的属性和值 其中键是属性名，值是属性值
         AnnotationAttributes annotationAttributes = AnnotationAttributes
                 .fromMap(annotationMetadata.getAnnotationAttributes(RpcComponentScan.class.getName()));
         String[] basePackages = {};
         if (annotationAttributes != null) {
-            // 此处去获取RpcComponentScan 注解的 basePackages 值
+            // 此处去获取RpcComponentScan 注解的 basePackages 值 basePackages 是一个string 数组
             basePackages = annotationAttributes.getStringArray("basePackages");
         }
         // 如果没有指定名称的话
-        if (basePackages.length == 0) {
+            if (basePackages.length == 0) {
+            // TODO 此处可以继续扩展，例如扫描指定类的包
             basePackages = new String[]{((StandardAnnotationMetadata) annotationMetadata).getIntrospectedClass().getPackage().getName()};
         }
         // 创建一个浏览 RpcService 注解的 Scanner
         // 备注：此处可以继续扩展，例如扫描 spring bean 或者其他类型的 Scanner
+        // TODO ： 看不懂
         RpcClassPathBeanDefinitionScanner rpcServiceScanner = new RpcClassPathBeanDefinitionScanner(registry, RpcService.class);
 
         if (this.resourceLoader != null) {

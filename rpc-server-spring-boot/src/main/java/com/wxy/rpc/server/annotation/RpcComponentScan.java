@@ -22,10 +22,12 @@ import java.lang.annotation.*;
  * @ClassName RpcComponentScan
  * @Date 2023/1/9 17:18
  */
+
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
+// 通过 @Import 注解，将 RpcBeanDefinitionRegistrar 类引入到 Spring 容器中
 @Import(RpcBeanDefinitionRegistrar.class)
 public @interface RpcComponentScan {
 

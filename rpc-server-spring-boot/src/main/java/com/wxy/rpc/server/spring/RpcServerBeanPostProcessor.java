@@ -36,12 +36,13 @@ public class RpcServerBeanPostProcessor implements BeanPostProcessor, CommandLin
 
     /**
      * 在 bean 实例化后，初始化后，检测标注有 @RpcService 注解的类，将对应的服务类进行注册，对外暴露服务，同时进行本地服务注册
-     *
+     * @SneakyThrows 注解用于将方法中的异常抛出，这样就不用在方法中进行 try-catch 了
      * @param bean     bean
      * @param beanName beanName
      * @return 返回增强后的 bean
      * @throws BeansException Bean 异常
      */
+
     @SneakyThrows
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
@@ -85,6 +86,8 @@ public class RpcServerBeanPostProcessor implements BeanPostProcessor, CommandLin
         new Thread(() -> rpcServer.start(properties.getPort())).start();
         log.info("Rpc server [{}] start, the appName is {}, the port is {}",
                 rpcServer, properties.getAppName(), properties.getPort());
+        // addShutdownHook方法添加了一个在JVM关闭时执行的钩子（hook） 这个函数开了一个线程，当JVM关闭的时候，会执行这个线程
+        // 这个钩子是在程序正常退出（通过调用System.exit）或虚拟机被关闭时执行的。
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
                 // 当服务关闭之后，将服务从 注册中心 上清除（关闭连接）

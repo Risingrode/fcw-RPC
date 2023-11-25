@@ -18,7 +18,6 @@ logging:
 spring:
   thymeleaf:
     cache: false
-    encoding: UTF-8
-    mode: HTML
     suffix: .html
     prefix: classpath:/templates/
+    mode: HTML

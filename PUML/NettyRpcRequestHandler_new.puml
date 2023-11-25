@@ -1,0 +1,11 @@
+@startuml
+participant Actor
+create NettyRpcRequestHandler
+Actor -> NettyRpcRequestHandler : new
+activate NettyRpcRequestHandler
+NettyRpcRequestHandler -> SingletonFactory : getInstance
+activate SingletonFactory
+SingletonFactory --> NettyRpcRequestHandler
+deactivate SingletonFactory
+return
+@enduml

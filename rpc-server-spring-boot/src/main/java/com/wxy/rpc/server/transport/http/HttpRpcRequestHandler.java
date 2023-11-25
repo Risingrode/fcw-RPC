@@ -30,6 +30,7 @@ public class HttpRpcRequestHandler {
         this.rpcRequestHandler = SingletonFactory.getInstance(RpcRequestHandler.class);
     }
 
+    // 表明编译器在检查代码时会忽略重复的代码的警告
     @SuppressWarnings("Duplicates")
     public void handle(HttpServletRequest req, HttpServletResponse resp) {
         try {
@@ -51,6 +52,8 @@ public class HttpRpcRequestHandler {
                 response.setExceptionValue(new RpcException("Error in remote procedure call, " + e.getMessage()));
             }
             log.debug("The response is {}.", response);
+            // 通过 ObjectOutputStream 将 RpcResponse 对象写入 HttpServletResponse 的输出流，实际上已经将响应数据返回给客户端。
+            // TODO 这个不知道哪里来接收消息
             oos.writeObject(response);
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException("The http server failed to handle client rpc request.", e);

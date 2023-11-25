@@ -29,7 +29,6 @@ public class DispatcherServlet extends HttpServlet {
     // 创建线程池
     private final ThreadPoolExecutor threadPool = new ThreadPoolExecutor(cpuNum * 2, cpuNum * 2, 60L, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10000));
 
-
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpRpcRequestHandler handler = SingletonFactory.getInstance(HttpRpcRequestHandler.class);

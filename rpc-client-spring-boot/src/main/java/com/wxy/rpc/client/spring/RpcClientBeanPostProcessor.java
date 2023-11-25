@@ -59,6 +59,7 @@ public class RpcClientBeanPostProcessor implements BeanPostProcessor {
                     // 关闭安全检查
                     field.setAccessible(true);
                     // 设置域的值为代理对象
+                    // 这里修改了bean
                     field.set(bean, proxy);
                 } catch (ClassNotFoundException | IllegalAccessException e) {
                     throw new RpcException(String.format("Failed to obtain proxy object, the type of field %s is %s, " +

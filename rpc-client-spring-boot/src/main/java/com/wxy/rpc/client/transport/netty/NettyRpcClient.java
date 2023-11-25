@@ -87,6 +87,9 @@ public class NettyRpcClient implements RpcClient {
             // 存入还未处理的请求
             RpcResponseHandler.UNPROCESSED_RPC_RESPONSES.put(sequenceId, promise);
             // 发送数据并监听发送状态
+            // 这是一个异步操作
+            // Netty 的异步模型通过 ChannelFuture 和 ChannelFutureListener 来处理异步操作。
+            // channel.writeAndFlush 返回一个 ChannelFuture 对象，你可以通过添加 ChannelFutureListener 来监听写操作的完成情况，执行相应的逻辑。
             channel.writeAndFlush(requestMetadata.getRpcMessage()).addListener((ChannelFutureListener) future -> {
                 if (future.isSuccess()) {
                     log.debug("The client send the message successfully, msg: [{}].", requestMetadata);

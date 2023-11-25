@@ -3,19 +3,19 @@ package com.wxy.rpc.consumer.controller;
 import com.wxy.rpc.api.service.AbstractService;
 import com.wxy.rpc.api.service.HelloService;
 import com.wxy.rpc.client.annotation.RpcReference;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Wuxy
- * @version 1.0
- * @ClassName HelloController
- * @Date 2023/1/8 10:12
+ * @Author: fcw
+ * @Description:
+ * @Date: 2023-11-23   17:49
  */
+
 @RestController
 @RequestMapping
 public class HelloController {
@@ -53,15 +53,5 @@ public class HelloController {
         return abstractService.abstractHello(name);
     }
 
-    // TODO ： 视图解析器-controller
-    // 下面是视图解析器测试内容
-    @RequestMapping("/hello/ViewTest/{num}")
-    public String viewTest(@PathVariable(name="num",required = false) String num) {
-        if("1".equals(num)){
-            return "index";
-        }else if("2".equals(num)){
-            return "hello,world";
-        }
-        return "数字不符合要求22232";
-    }
+
 }

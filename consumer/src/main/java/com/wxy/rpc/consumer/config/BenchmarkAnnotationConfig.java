@@ -13,14 +13,14 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;
 
+
 /**
- * 性能测试配置类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName BenchmarkAnnotationConfig
- * @since 2023/2/22 16:36
+ * @Author: fcw
+ * @Description: 性能测试配置类
+ * @Date: 2023-11-23   17:44
  */
+
 @ComponentScan("com.wxy.rpc")
 @Configuration
 @PropertySource(value = "classpath:application.yml", factory = BenchmarkAnnotationConfig.YamlPropertySourceFactory.class)
@@ -30,10 +30,12 @@ public class BenchmarkAnnotationConfig {
      * 读取 yaml 配置文件的属性工厂类
      */
     static class YamlPropertySourceFactory implements PropertySourceFactory {
-
         @Override
         public org.springframework.core.env.PropertySource<?> createPropertySource(String name, EncodedResource resource) throws IOException {
             Properties propertiesFromYaml = loadYamlIntoProperties(resource);
+            // System.out.println("资源是： "+resource); // class path resource [application.yml]
+            // System.out.println(propertiesFromYaml); // {server={port=8080}, spring={application={name=rpc-framework-consumer}}}
+            // System.out.println(name); // applicationConfig: [classpath:/application.yml]
             String sourceName = name != null ? name : resource.getResource().getFilename();
             return new PropertiesPropertySource(Objects.requireNonNull(sourceName), propertiesFromYaml);
         }
@@ -45,7 +47,6 @@ public class BenchmarkAnnotationConfig {
                 factory.afterPropertiesSet();
                 return factory.getObject();
             } catch (IllegalStateException e) {
-                // for ignoreResourceNotFound
                 Throwable cause = e.getCause();
                 if (cause instanceof FileNotFoundException) {
                     throw (FileNotFoundException) e.getCause();

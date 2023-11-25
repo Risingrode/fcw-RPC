@@ -45,22 +45,19 @@ import org.springframework.core.env.Environment;
  *     13. ConditionalOnWarDeployment：当前项⽬是不是以War包部署的⽅式运⾏
  *     14. ConditionalOnCloudPlatform：是不是在某个云平台上
  * </pre>
- *
+    *1.根据配置创建不同的负载均衡策略的 Bean（Random、RoundRobin、ConsistentHash）。<p>
+    *2.根据配置创建不同的服务发现的 Bean（Zookeeper、Nacos）。<p>
+    *3.根据配置创建不同的 RPC 客户端的 Bean（Netty、Http、Socket）。<p>
+    *4.创建客户端代理工厂、Bean后置处理器以及在应用退出时销毁资源的 Bean。<p>
  * @author Wuxy
  * @version 1.0
  * @ClassName RpcClientAutoConfiguration
  * @Date 2023/1/8 12:06
  */
 
-/*
-    1. 根据配置创建不同的负载均衡策略的 Bean（Random、RoundRobin、ConsistentHash）。
-    2. 根据配置创建不同的服务发现的 Bean（Zookeeper、Nacos）。
-    3. 根据配置创建不同的 RPC 客户端的 Bean（Netty、Http、Socket）。
-    4. 创建客户端代理工厂、Bean后置处理器以及在应用退出时销毁资源的 Bean。
-*/
-
 @Configuration
-//  告诉 Spring Boot 将 RpcClientProperties 类注册为配置属性类，以便在其他地方通过 @Autowired 注解来注入这个配置类的实例，并使用其中的属性值。
+//  告诉 Spring Boot 将 RpcClientProperties 类注册为配置属性类，
+//  以便在其他地方通过 @Autowired 注解来注入这个配置类的实例，并使用其中的属性值。
 @EnableConfigurationProperties(RpcClientProperties.class)
 public class RpcClientAutoConfiguration {
 
