@@ -9,12 +9,12 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import java.lang.reflect.Field;
 
 /**
- * 客户端 Bean 后置处理器，主要用于扫描创建的 bean 中有被 @RpcReference 标注的域属性，获取对应的代理对象并进行替换
  *
- * @author Wuxy
- * @version 1.0
- * @see com.wxy.rpc.client.annotation.RpcReference
+ * @Author: fcw
+ * @Description: 客户端 Bean 后置处理器，主要用于扫描创建的 bean 中有被 @RpcReference 标注的域属性，获取对应的代理对象并进行替换
+ * @Date: 2023-11-26   14:45
  */
+
 public class RpcClientBeanPostProcessor implements BeanPostProcessor {
 
     private final ClientStubProxyFactory proxyFactory;

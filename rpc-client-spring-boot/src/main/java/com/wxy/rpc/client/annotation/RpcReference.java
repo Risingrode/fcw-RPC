@@ -2,14 +2,14 @@ package com.wxy.rpc.client.annotation;
 
 import java.lang.annotation.*;
 
+
 /**
  * RPC 引用注解，自动注入对应的实现类
- * @Description 该注解用于标识需要引用的远程服务，并实现自动注入相应的实现类。
- * @author Wuxy
- * @version 1.0
- * @ClassName RpcReference
- * @Date 2023/1/6 17:22
+ * @Author: fcw
+ * @Description: 该注解用于标识需要引用的远程服务，并实现自动注入相应的实现类。
+ * @Date: 2023-11-25   23:11
  */
+
 // 该注解可以用于类的字段（Field）、方法（Method）和其他注解（Annotation Type）。
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 // 1、RetentionPolicy.SOURCE：注解只保留在源文件，当Java文件编译成class文件的时候，注解被遗弃；

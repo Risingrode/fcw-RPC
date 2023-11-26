@@ -9,13 +9,12 @@ import net.sf.cglib.proxy.MethodProxy;
 import java.lang.reflect.Method;
 
 /**
- * 基于 Cglib 动态代理的客户端方法调用处理器类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName ClientStubMethodInterceptor
- * @since 2023/2/7 9:35
+ * @Author: fcw
+ * @Description: 基于 Cglib 动态代理的客户端方法调用处理器类
+ * @Date: 2023-11-26   14:23
  */
+
 public class ClientStubMethodInterceptor implements MethodInterceptor {
 
     /**
@@ -46,6 +45,7 @@ public class ClientStubMethodInterceptor implements MethodInterceptor {
     }
 
     @Override
+    // methodProxy 是用于调用代理对象上父类方法的代理对象
     public Object intercept(Object o, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
         // 执行远程方法调用
         return RemoteMethodCall.remoteCall(serviceDiscovery, rpcClient, serviceName, properties, method, args);

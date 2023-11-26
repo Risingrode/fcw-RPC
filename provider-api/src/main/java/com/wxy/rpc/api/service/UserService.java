@@ -5,11 +5,12 @@ import com.wxy.rpc.api.pojo.User;
 import java.util.List;
 
 /**
- * @author Wuxy
- * @version 1.0
- * @ClassName UserService
- * @Date 2023/1/8 23:43
+ *
+ * @Author: fcw
+ * @Description:
+ * @Date: 2023-11-25   23:02
  */
+
 public interface UserService {
 
     User queryUser();

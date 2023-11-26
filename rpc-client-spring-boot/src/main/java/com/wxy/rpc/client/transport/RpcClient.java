@@ -4,13 +4,12 @@ import com.wxy.rpc.client.common.RequestMetadata;
 import com.wxy.rpc.core.protocol.RpcMessage;
 
 /**
- * Rpc 客户端类，负责向服务端发起请求（远程过程调用）
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName RpcClient
- * @Date 2023/1/6 17:28
+ * @Author: fcw
+ * @Description: Rpc 客户端类，负责向服务端发起请求（远程过程调用）
+ * @Date: 2023-11-26   14:03
  */
+
 public interface RpcClient {
 
     /**

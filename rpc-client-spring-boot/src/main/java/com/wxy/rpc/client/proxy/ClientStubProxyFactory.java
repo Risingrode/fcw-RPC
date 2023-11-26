@@ -11,13 +11,12 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 客户端代理工厂类，返回服务代理类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName ClientStubProxyFactory
- * @Date 2023/1/7 14:54
+ * @Author: fcw
+ * @Description: 客户端代理工厂类，返回服务代理类
+ * @Date: 2023-11-26   14:24
  */
+
 public class ClientStubProxyFactory {
 
     /**
@@ -59,7 +58,6 @@ public class ClientStubProxyFactory {
         return (T) proxyMap.computeIfAbsent(ServiceUtil.serviceKey(clazz.getName(), version), serviceName -> {
             // 如果目标类是一个接口或者 是 java.lang.reflect.Proxy 的子类 则默认使用 JDK 动态代理
             if (clazz.isInterface() || Proxy.isProxyClass(clazz)) {
-
                 return Proxy.newProxyInstance(clazz.getClassLoader(),
                         new Class[]{clazz}, // 注意，这里的接口是 clazz 本身（即，要代理的实现类所实现的接口）
                         new ClientStubInvocationHandler(discovery, rpcClient, properties, serviceName));

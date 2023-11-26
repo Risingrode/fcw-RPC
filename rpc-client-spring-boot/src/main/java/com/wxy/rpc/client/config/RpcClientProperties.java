@@ -4,15 +4,15 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Rpc Client 配置属性类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName RpcClientProperties
- * @Date 2023/1/7 15:12
+ * @Author: fcw
+ * @Description: Rpc Client 配置属性类
+ * @Date: 2023-11-25   23:47
  */
+
 @Data
 // 用于绑定配置文件中特定前缀的属性到 Java 类的注解
+// TODO ： 这个注解不太明白
 @ConfigurationProperties(prefix = "rpc.client")
 public class RpcClientProperties {
 
@@ -41,9 +41,6 @@ public class RpcClientProperties {
      */
     private String registryAddr;
 
-    /**
-     * Connection timeout, default: 5000
-     */
     private Integer timeout;
 
     public RpcClientProperties() {

@@ -2,6 +2,12 @@ package com.wxy.api;
 
 
 import java.io.*;
+/**
+ *
+ * @Author: fcw
+ * @Description: 测试字节流
+ * @Date: 2023-11-25   22:55
+ */
 
 public class SerializableTest {
     public static void main(String[] args) {

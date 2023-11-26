@@ -1,18 +1,10 @@
-package com.wxy.rpc.client.common;
+package com.wxy.rpc.client.transport.netty;
 
 import com.wxy.rpc.core.protocol.RpcMessage;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-
-/**
- *
- * @Author: fcw
- * @Description: 该类用于封装远程服务调用的相关信息,请求元数据类
- * @Date: 2023-11-25   23:17
- */
 
 @Data
 @Builder

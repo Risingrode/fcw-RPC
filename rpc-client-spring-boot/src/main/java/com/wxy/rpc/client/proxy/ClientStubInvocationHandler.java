@@ -8,13 +8,12 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 /**
- * 基于 JDK 动态代理的客户端方法调用处理器类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName ClientStubInvocationHandler
- * @Date 2023/1/7 14:03
+ * @Author: fcw
+ * @Description: JDK
+ * @Date: 2023-11-26   14:24
  */
+
 public class ClientStubInvocationHandler implements InvocationHandler {
 
     /**
@@ -36,7 +35,6 @@ public class ClientStubInvocationHandler implements InvocationHandler {
      * 服务名称：接口-版本
      */
     private final String serviceName;
-
 
     public ClientStubInvocationHandler(ServiceDiscovery serviceDiscovery, RpcClient rpcClient, RpcClientProperties properties, String serviceName) {
         this.serviceDiscovery = serviceDiscovery;

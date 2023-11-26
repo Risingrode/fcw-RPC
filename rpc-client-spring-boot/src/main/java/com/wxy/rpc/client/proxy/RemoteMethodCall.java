@@ -14,13 +14,12 @@ import com.wxy.rpc.core.protocol.RpcMessage;
 import java.lang.reflect.Method;
 
 /**
- * 远程方法调用工具类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName RemoteMethodCall
- * @since 2023/2/7 9:25
+ * @Author: fcw
+ * @Description: 远程方法调用工具类
+ * @Date: 2023-11-26   14:22
  */
+
 public class RemoteMethodCall {
 
     /**

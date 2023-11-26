@@ -49,9 +49,7 @@ import org.springframework.core.env.Environment;
     *2.根据配置创建不同的服务发现的 Bean（Zookeeper、Nacos）。<p>
     *3.根据配置创建不同的 RPC 客户端的 Bean（Netty、Http、Socket）。<p>
     *4.创建客户端代理工厂、Bean后置处理器以及在应用退出时销毁资源的 Bean。<p>
- * @author Wuxy
- * @version 1.0
- * @ClassName RpcClientAutoConfiguration
+ * @author fcw
  * @Date 2023/1/8 12:06
  */
 
@@ -82,12 +80,9 @@ public class RpcClientAutoConfiguration {
     @Autowired
     RpcClientProperties rpcClientProperties;
 
-    // 声明该方法返回一个 Bean
     @Bean(name = "loadBalance")
-    // 在多个同类型的 Bean 中，优先选择该 Bean。
     @Primary
-    // 当容器中不存在同类型的 Bean 时创建这个 Bean。
-    @ConditionalOnMissingBean // 不指定 value 则值默认为当前创建的类
+    @ConditionalOnMissingBean
     // 当配置文件中属性 rpc.client.loadbalance 的值为 "random" 时，创建这个 Bean。
     // matchIfMissing = true 表示如果未配置该属性，则同样创建这个 Bean。
     @ConditionalOnProperty(prefix = "rpc.client", name = "loadbalance", havingValue = "random", matchIfMissing = true)
@@ -148,6 +143,7 @@ public class RpcClientAutoConfiguration {
         return new SocketRpcClient();
     }
 
+    // 返回完整服务
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnBean({ServiceDiscovery.class, RpcClient.class})
@@ -157,12 +153,14 @@ public class RpcClientAutoConfiguration {
         return new ClientStubProxyFactory(serviceDiscovery, rpcClient, rpcClientProperties);
     }
 
+    // 主要用于扫描创建的 bean 中有被 @RpcReference 标注的域属性，获取对应的代理对象并进行替
     @Bean
     @ConditionalOnMissingBean
     public RpcClientBeanPostProcessor rpcClientBeanPostProcessor(@Autowired ClientStubProxyFactory clientStubProxyFactory) {
         return new RpcClientBeanPostProcessor(clientStubProxyFactory);
     }
 
+    // 客户端退出时需要执行的类
     @Bean
     @ConditionalOnMissingBean
     public RpcClientExitDisposableBean rpcClientExitDisposableBean(@Autowired ServiceDiscovery serviceDiscovery) {

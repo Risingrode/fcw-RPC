@@ -16,5 +16,4 @@ public class User implements Serializable {
         age = i;
     }
 
-    // 省略构造方法、getter和setter
 }

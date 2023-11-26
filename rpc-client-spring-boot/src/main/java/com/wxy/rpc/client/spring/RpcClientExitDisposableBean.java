@@ -5,13 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
 
 /**
- * 客户端退出时执行额外操作类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName RpcClientExitDisposableBean
- * @Date 2023/1/10 16:43
+ * @Author: fcw
+ * @Description: 客户端退出时执行额外操作类
+ * @Date: 2023-11-26   14:46
  */
+
 @Slf4j
 public class RpcClientExitDisposableBean implements DisposableBean {
 
