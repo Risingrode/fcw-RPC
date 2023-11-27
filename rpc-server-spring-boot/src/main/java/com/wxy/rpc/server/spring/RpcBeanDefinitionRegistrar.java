@@ -12,13 +12,12 @@ import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.StandardAnnotationMetadata;
 
 /**
- * Rpc 自定义服务的 BeanDefinition 注册器类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName RpcBeanDefinitionRegistrar
- * @Date 2023/1/9 17:33
+ * @Author: fcw
+ * @Description: Rpc 自定义服务的 BeanDefinition 注册器类
+ * @Date: 2023-11-27   9:14
  */
+
 @Slf4j
 public class RpcBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoaderAware {
     // 资源加载器 用于加载类路径下的资源 如 xml 配置文件 等
