@@ -25,13 +25,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
- * 基于 Netty 实现的 Rpc Client 类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName NettyRpcClient
- * @Date 2023/1/6 17:28
+ * @Author: fcw
+ * @Description: 基于 Netty 实现的 Rpc Client 类
+ * @Date: 2023-11-27   8:31
  */
+
 @Slf4j
 public class NettyRpcClient implements RpcClient {
 
@@ -74,6 +73,7 @@ public class NettyRpcClient implements RpcClient {
 
     @SneakyThrows
     @Override
+    // TODO : 这块有点难理解，需要再看看
     public RpcMessage sendRpcRequest(RequestMetadata requestMetadata) {
         // 构建接收返回结果的 promise
         Promise<RpcMessage> promise;

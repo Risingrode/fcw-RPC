@@ -17,10 +17,9 @@ import java.lang.annotation.*;
  * 将 @{@link RpcComponentScan} 注解上的信息提取成 {@link AnnotationMetadata} 以及容器注册器对象作为此方法的参数，这个就是自定义注解式组件扫描的关键逻辑。
  * </p>
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName RpcComponentScan
- * @Date 2023/1/9 17:18
+ * @Author: fcw
+ * @Description:
+ * @Date: 2023-11-27   8:57
  */
 
 @Target(ElementType.TYPE)

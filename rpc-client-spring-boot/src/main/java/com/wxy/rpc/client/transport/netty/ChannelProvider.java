@@ -7,13 +7,12 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 保存并获取 Channel 对象
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName ChannelProvider
- * @Date 2023/1/6 18:16
+ * @Author: fcw
+ * @Description: 保存并获取 Channel 对象
+ * @Date: 2023-11-27   8:29
  */
+
 public class ChannelProvider {
 
     /**

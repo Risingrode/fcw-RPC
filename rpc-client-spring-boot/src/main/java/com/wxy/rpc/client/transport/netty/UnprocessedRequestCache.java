@@ -7,14 +7,12 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 缓存未处理完成的 rpc 请求
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName UnprocessedRequestCache
- * @Date 2023/1/7 12:18
- * @deprecated 缓存并处理响应信息的功能已经由 {@link com.wxy.rpc.client.handler.RpcResponseHandler} 实现。
+ * @Author: fcw
+ * @Description: 缓存未处理完成的 rpc 请求，缓存并处理响应信息的功能已经由 {@link com.wxy.rpc.client.handler.RpcResponseHandler} 实现。
+ * @Date: 2023-11-27   8:45
  */
+
 @Deprecated
 public class UnprocessedRequestCache {
 

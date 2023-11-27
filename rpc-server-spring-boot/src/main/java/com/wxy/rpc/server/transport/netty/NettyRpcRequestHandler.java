@@ -23,13 +23,12 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 基于 Netty 的 Rpc 请求消息处理器
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName RpcRequestHandler
- * @Date 2023/1/6 19:42
+ * @Author: fcw
+ * @Description: 基于 Netty 的 Rpc 请求消息处理器
+ * @Date: 2023-11-27   9:06
  */
+
 @Slf4j
 public class NettyRpcRequestHandler extends SimpleChannelInboundHandler<RpcMessage> {
 

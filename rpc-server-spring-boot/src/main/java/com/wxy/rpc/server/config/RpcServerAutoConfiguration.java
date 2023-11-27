@@ -19,13 +19,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 /**
- * RpcServer 端的自动配置类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName RpcServerAutoConfiguration
- * @Date 2023/1/8 12:34
+ * @Author: fcw
+ * @Description: RpcServer 端的自动配置类
+ * @Date: 2023-11-27   8:58
  */
+
 @Configuration
 //　允许通过 RpcServerProperties 类读取配置文件中的属性。
 @EnableConfigurationProperties(RpcServerProperties.class)

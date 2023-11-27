@@ -1,3 +1,4 @@
 # Auto Configuration
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.wxy.rpc.server.config.RpcServerAutoConfiguration
+

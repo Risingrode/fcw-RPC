@@ -6,13 +6,12 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 本地服务缓存类，将提供的服务实体类缓存到本地
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName LocalServiceCache
- * @Date 2023/1/7 12:46
+ * @Author: fcw
+ * @Description: 本地服务缓存类，将提供的服务实体类缓存到本地
+ * @Date: 2023-11-27   8:58
  */
+
 @Slf4j
 public class LocalServiceCache {
 
