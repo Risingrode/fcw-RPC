@@ -12,7 +12,6 @@ import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.StandardAnnotationMetadata;
 
 /**
- *
  * @Author: fcw
  * @Description: Rpc 自定义服务的 BeanDefinition 注册器类
  * @Date: 2023-11-27   9:14
@@ -34,6 +33,7 @@ public class RpcBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
      * @param annotationMetadata annotation metadata of the importing class
      * @param registry           current bean definition registry
      */
+    // 该方法自动执行哦
     @Override
     public void registerBeanDefinitions(AnnotationMetadata annotationMetadata, BeanDefinitionRegistry registry) {
         // 获取 RpcComponentScan 注解的属性和值 其中键是属性名，值是属性值
@@ -45,13 +45,14 @@ public class RpcBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar
             basePackages = annotationAttributes.getStringArray("basePackages");
         }
         // 如果没有指定名称的话
-            if (basePackages.length == 0) {
+        if (basePackages.length == 0) {
             // TODO 此处可以继续扩展，例如扫描指定类的包
             basePackages = new String[]{((StandardAnnotationMetadata) annotationMetadata).getIntrospectedClass().getPackage().getName()};
         }
         // 创建一个浏览 RpcService 注解的 Scanner
         // 备注：此处可以继续扩展，例如扫描 spring bean 或者其他类型的 Scanner
-        // TODO ： 看不懂
+        // RpcClassPathBeanDefinitionScanner会扫描所有标注了RpcService注解的类
+        // register是Spring容器中用于注册Bean定义的接口。在Spring容器启动时，所有的Bean定义都会被注册到这个接口中。
         RpcClassPathBeanDefinitionScanner rpcServiceScanner = new RpcClassPathBeanDefinitionScanner(registry, RpcService.class);
 
         if (this.resourceLoader != null) {

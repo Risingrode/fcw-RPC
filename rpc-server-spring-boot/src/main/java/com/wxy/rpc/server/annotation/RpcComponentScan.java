@@ -33,6 +33,7 @@ public @interface RpcComponentScan {
     /**
      * 扫描包路径
      */
+    // 这个注解表示 value 和 basePackages 是同义词
     @AliasFor("basePackages")
     String[] value() default {};
 

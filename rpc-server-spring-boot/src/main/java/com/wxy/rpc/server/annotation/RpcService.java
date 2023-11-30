@@ -18,11 +18,13 @@ public @interface RpcService {
     /**
      * 对外暴露服务的接口类型，默认为 void.class
      */
+    // eg: interfaceClass = HelloService.class
     Class<?> interfaceClass() default void.class;
 
     /**
      * 对外暴露服务的接口名（全限定名），默认为 ""
      */
+    // eg: interfaceName = "com.wxy.rpc.api.HelloService"
     String interfaceName() default "";
 
     /**
