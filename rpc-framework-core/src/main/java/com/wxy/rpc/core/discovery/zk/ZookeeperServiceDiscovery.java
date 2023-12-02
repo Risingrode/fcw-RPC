@@ -22,16 +22,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
- * Zookeeper 实现服务发现实现类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName ZookeeperServiceDiscovery
- * @Date 2023/1/5 21:07
- * @see org.apache.curator.framework.CuratorFramework
- * @see org.apache.curator.x.discovery.ServiceDiscovery
- * @see org.apache.curator.x.discovery.ServiceCache
+ * @Author: fcw
+ * @Description: Zookeeper 实现服务发现实现类
+ * @Date: 2023-12-02   18:38
  */
+
 @Slf4j
 public class ZookeeperServiceDiscovery implements ServiceDiscovery {
     private static final int SESSION_TIMEOUT = 60 * 1000;

@@ -34,7 +34,7 @@ public class RpcRequestHandler {
         }
         // 获取指定的方法
         Method method = service.getClass().getMethod(request.getMethod(), request.getParameterTypes());
-        // 调用方法并返回结果
+        // 返回 method 方法的返回值
         return method.invoke(service, request.getParameterValues());
     }
 

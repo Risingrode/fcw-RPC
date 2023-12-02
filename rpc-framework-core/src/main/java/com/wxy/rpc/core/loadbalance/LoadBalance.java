@@ -7,14 +7,12 @@ import com.wxy.rpc.core.extension.SPI;
 import java.util.List;
 
 /**
- * 负载均衡 接口类
- * <p>
- * <a href="https://cn.dubbo.apache.org/zh/docsv2.7/dev/source/loadbalance/">dubbo负载均衡参考资料</a>
- * </p>
  *
- * @author Wuxy
- * @version 1.0
+ * @Author: fcw
+ * @Description: 负载均衡 接口类
+ * @Date: 2023-12-02   18:22
  */
+
 @SPI
 public interface LoadBalance {
 

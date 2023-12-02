@@ -13,17 +13,17 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 /**
- * 处理 RpcRequest，基于 Socket 通信
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName SocketRpcRequestHandler
- * @Date 2023/1/12 16:36
+ * @Author: fcw
+ * @Description: 处理 RpcRequest，基于 Socket 通信
+ * @Date: 2023-12-02   12:58
  */
+
 @Slf4j
 public class SocketRpcRequestHandler implements Runnable {
     private final Socket socket;
 
+    // 这是一个远程调用函数
     private final RpcRequestHandler rpcRequestHandler;
 
     public SocketRpcRequestHandler(Socket socket) {

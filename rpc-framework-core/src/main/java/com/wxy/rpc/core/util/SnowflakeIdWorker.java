@@ -1,12 +1,12 @@
 package com.wxy.rpc.core.util;
 
 /**
- * @author Wuxy
- * @version 1.0
- * @ClassName SnowflakeIdWorker
- * @Date 2023/1/5 18:21
+ *
+ * @Author: fcw
+ * @Description: 一个用于生成分布式唯一ID的工具类，其实现基于Snowflake算法
+ * @Date: 2023-12-02   15:42
  */
-// 一个用于生成分布式唯一ID的工具类，其实现基于Snowflake算法
+
 public class SnowflakeIdWorker {
 
     // ==============================Fields===========================================
@@ -51,7 +51,7 @@ public class SnowflakeIdWorker {
     private final long datacenterIdShift = sequenceBits + workerIdBits;
 
     /**
-     * 时间截向左移22位(5+5+12)
+     * 时间戳向左移22位(5+5+12)
      */
     private final long timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;
 
@@ -175,6 +175,8 @@ public class SnowflakeIdWorker {
         long id = idWorker.nextId();
         System.out.println("id:" + id);
         // id:768842202204864512
+        long timeGen = idWorker.timeGen();
+        System.out.println("TimeGen:" + timeGen);
     }
 }
 

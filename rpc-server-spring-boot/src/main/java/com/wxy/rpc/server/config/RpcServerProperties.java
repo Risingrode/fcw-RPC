@@ -7,13 +7,12 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * 服务端配置属性类（必须提供 getter、setter 方法，否则无法注入属性值）
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName RpcServerProperties
- * @Date 2023/1/6 23:33
+ * @Author: fcw
+ * @Description: 服务端配置属性类（必须提供 getter、setter 方法，否则无法注入属性值）
+ * @Date: 2023-11-30   10:53
  */
+
 @Data
 //跟配置文件中的属性进行绑定，指定前缀
 @ConfigurationProperties(prefix = "rpc.server")

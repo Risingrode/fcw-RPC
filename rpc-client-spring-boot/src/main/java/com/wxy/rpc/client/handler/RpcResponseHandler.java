@@ -40,6 +40,7 @@ public class RpcResponseHandler extends SimpleChannelInboundHandler<RpcMessage> 
 
     @Override
     // 读取到消息时会调用这个方法
+    // RpcMessage msg 对应上一个管道中的 decode() 里面的解码器
     protected void channelRead0(ChannelHandlerContext ctx, RpcMessage msg) throws Exception {
         try {
             MessageType type = MessageType.parseByType(msg.getHeader().getMessageType());

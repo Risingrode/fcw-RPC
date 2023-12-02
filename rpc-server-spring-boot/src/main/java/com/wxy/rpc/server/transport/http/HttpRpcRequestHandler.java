@@ -14,13 +14,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * 基于 HTTP 协议的 RpcRequest 处理器
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName HttpRpcRequestHandler
- * @Date 2023/1/12 16:47
+ * @Author: fcw
+ * @Description: HttpRpcRequestHandler 实现类，用来处理客户端请求
+ * @Date: 2023-11-30   12:01
  */
+
 @Slf4j
 public class HttpRpcRequestHandler {
 
@@ -53,11 +52,12 @@ public class HttpRpcRequestHandler {
             }
             log.debug("The response is {}.", response);
             // 通过 ObjectOutputStream 将 RpcResponse 对象写入 HttpServletResponse 的输出流，实际上已经将响应数据返回给客户端。
-            // TODO 这个不知道哪里来接收消息
+            // 客户端通过 ObjectInputStream 读取 RpcResponse 对象，从而获取到服务端的响应结果。
+            // ObjectInputStream ois = new ObjectInputStream(httpResponse.getInputStream());
+            // RpcResponse response = (RpcResponse) ois.readObject();
             oos.writeObject(response);
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException("The http server failed to handle client rpc request.", e);
         }
     }
-
 }

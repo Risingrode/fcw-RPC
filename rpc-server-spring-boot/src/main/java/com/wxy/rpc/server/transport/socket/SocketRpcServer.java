@@ -14,22 +14,17 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 基于 Socket 的 RpcServer 实现类
- * <p>
- * SocketServer 接受和发送的数据为：RpcRequest, RpcResponse
- * </p>
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName SocketRpcServer
- * @Date 2023/1/12 12:07
+ * @Author: fcw
+ * @Description: 基于 Socket 的 RpcServer 实现类
+ * @Date: 2023-12-02   13:00
  */
+
 @Slf4j
 public class SocketRpcServer implements RpcServer {
 
-    /**
-     * 当前处理器数量
-     */
+
+    // 当前处理器数量
     private final int cpuNum = Runtime.getRuntime().availableProcessors();
 
     // 线程大小：这一点要看我们执行的任务是cpu密集型，还是io密集型
@@ -41,6 +36,7 @@ public class SocketRpcServer implements RpcServer {
     public void start(Integer port) {
         try (ServerSocket serverSocket = new ServerSocket()) {
             String hostAddress = InetAddress.getLocalHost().getHostAddress();
+            // 绑定到本地主机和指定端口号上
             serverSocket.bind(new InetSocketAddress(hostAddress, port));
             Socket socket;
             // 循环接受客户端 Socket 连接（accept为阻塞时等待连接）

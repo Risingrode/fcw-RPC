@@ -7,13 +7,12 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * Service 工具类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName  ServiceUtil
- * @Date 2023/1/5 20:57
+ * @Author: fcw
+ * @Description: 使用Gson将ServiceInfo对象转换为Map对象，或者将Map对象转换为ServiceInfo对象
+ * @Date: 2023-12-02   16:25
  */
+
 public class ServiceUtil {
     // Gson 对象 用于序列化和反序列化
     public static final Gson gson = new Gson();
@@ -59,7 +58,9 @@ public class ServiceUtil {
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
     public static ServiceInfo toServiceInfo(Map map) {
+        // 将 map 中的 port 从 String 类型转换为 Integer 类型
         map.put("port", Integer.parseInt(map.getOrDefault("port", "0").toString()));
+        // 将 map 转换为 JSON 格式的字符串，再将 JSON 字符串转换为 ServiceInfo 对象
         return gson.fromJson(gson.toJson(map), ServiceInfo.class);
     }
 }

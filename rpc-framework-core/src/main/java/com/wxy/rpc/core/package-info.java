@@ -1,7 +1,7 @@
 /**
  * rpc框架核心包，主要包括序列化算法、编解码器、通信模块、服务注册发现、负载均衡算法、SPI模块
  *
- * @author Wuxy
+ * @author fcw
  * @version 1.0
  * @ClassName package-info
  * @see com.wxy.rpc.core.codec.SharableRpcMessageCodec

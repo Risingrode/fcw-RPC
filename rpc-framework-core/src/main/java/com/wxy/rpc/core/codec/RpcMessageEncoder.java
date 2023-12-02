@@ -5,15 +5,24 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 
 /**
- * @author Wuxy
- * @version 1.0
- * @ClassName RpcMessageEncoder
- * @Date 2023/1/4 23:15
+ *
+ * @Author: fcw
+ * @Description:  Rpc 消息编码器
+ * @Date: 2023-12-02   17:16
  */
+
 public class RpcMessageEncoder<T> extends MessageToByteEncoder<T> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, T msg, ByteBuf out) throws Exception {
         // todo: implement this method.
+        // Convert the message to bytes
+        byte[] bytes = msg.toString().getBytes();
+
+        // Write the length of the message
+        out.writeInt(bytes.length);
+
+        // Write the message
+        out.writeBytes(bytes);
     }
 }

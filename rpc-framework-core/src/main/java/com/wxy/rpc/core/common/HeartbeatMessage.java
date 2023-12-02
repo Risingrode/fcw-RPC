@@ -6,13 +6,12 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 心跳检查消息类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName HeartbeatMessage
- * @Date 2023/1/7 18:31
+ * @Author: fcw
+ * @Description: 心跳检查消息类
+ * @Date: 2023-12-02   13:14
  */
+
 @Data
 @Builder
 public class HeartbeatMessage implements Serializable {

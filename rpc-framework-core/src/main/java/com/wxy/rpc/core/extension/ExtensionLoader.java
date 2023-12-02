@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 该接口的所有扩展类实现类，并且缓存了这个接口文件内所有的声明的实现类
  * </p>
  *
- * @author Wuxy
+ * @author fcw
  * @version 1.0
  * @ClassName ExtensionLoader
  * @Date 2023/1/11 18:44

@@ -18,15 +18,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
- * Nacos 实现服务发现实现类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName NacosServiceDiscovery
- * @Date 2023/1/8 16:19
- * @see NamingService
- * @see com.alibaba.nacos.api.naming.pojo.Instance
+ * @Author: fcw
+ * @Description: Nacos 实现服务发现实现类
+ * @Date: 2023-12-02   18:18
  */
+
 @Slf4j
 public class NacosServiceDiscovery implements ServiceDiscovery {
     /**
@@ -87,7 +84,6 @@ public class NacosServiceDiscovery implements ServiceDiscovery {
                     NamingEvent namingEvent = (NamingEvent) event;
                     log.info("The service [{}] cache has changed. The current number of service samples is {}."
                             , serverName, namingEvent.getInstances().size());
-
                     // 更新本地服务列表缓存
                     serviceMap.put(namingEvent.getServiceName(), namingEvent.getInstances().stream()
                             .map(instance -> ServiceUtil.toServiceInfo(instance.getMetadata()))

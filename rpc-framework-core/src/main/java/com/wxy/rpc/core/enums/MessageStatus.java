@@ -3,13 +3,12 @@ package com.wxy.rpc.core.enums;
 import lombok.Getter;
 
 /**
- * 消息状态类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName MessageStatus
- * @Date 2023/1/10 0:14
+ * @Author: fcw
+ * @Description: 消息状态类
+ * @Date: 2023-12-02   18:54
  */
+
 public enum MessageStatus {
 
     /**

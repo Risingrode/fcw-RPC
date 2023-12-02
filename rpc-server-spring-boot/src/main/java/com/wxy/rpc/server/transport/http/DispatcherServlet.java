@@ -12,13 +12,12 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
- * DispatcherServlet 实现类，用来接受 http 请求
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName DispatcherServlet
- * @Date 2023/1/12 16:45
+ * @Author: fcw
+ * @Description: DispatcherServlet 实现类，用来接受 http 请求
+ * @Date: 2023-11-30   11:57
  */
+
 public class DispatcherServlet extends HttpServlet {
 
     /**

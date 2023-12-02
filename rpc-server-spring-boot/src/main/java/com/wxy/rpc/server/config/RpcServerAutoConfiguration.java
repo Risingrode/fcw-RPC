@@ -25,6 +25,8 @@ import org.springframework.context.annotation.Primary;
  * @Date: 2023-11-27   8:58
  */
 
+// 被Bean注解标注的返回值会被注册到Spring容器中
+
 @Configuration
 //　允许通过 RpcServerProperties 类读取配置文件中的属性。
 @EnableConfigurationProperties(RpcServerProperties.class)
@@ -43,6 +45,7 @@ public class RpcServerAutoConfiguration {
     @ConditionalOnMissingBean
     // 当配置文件中 rpc.server.registry 属性值为 zookeeper 时，创建此 bean
     // matchIfMissing = true 的含义是，如果配置文件中没有 rpc.server.registry 属性，也视为条件匹配，即使用默认值
+    // havingValue = "zookeeper" 的含义是，如果配置文件中 rpc.server.registry 属性值为 zookeeper，才视为条件匹配
     @ConditionalOnProperty(prefix = "rpc.server", name = "registry", havingValue = "zookeeper", matchIfMissing = true)
     public ServiceRegistry zookeeperServiceRegistry() {
         return new ZookeeperServiceRegistry(properties.getRegistryAddr());
@@ -89,6 +92,7 @@ public class RpcServerAutoConfiguration {
                                                                  @Autowired RpcServer rpcServer,
                                                                  @Autowired RpcServerProperties properties) {
 
+        //  容器启动时，将被 @RpcService 注解标注的类进行注册并暴露
         return new RpcServerBeanPostProcessor(serviceRegistry, rpcServer, properties);
     }
 

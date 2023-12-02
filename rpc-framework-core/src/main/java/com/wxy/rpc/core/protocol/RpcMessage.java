@@ -3,12 +3,12 @@ package com.wxy.rpc.core.protocol;
 import lombok.Data;
 
 /**
- * Rpc 消息协议类
  *
- * @author Wuxy
- * @version 1.0
- * @Date 2023/1/4
+ * @Author: fcw
+ * @Description: Rpc 消息协议类
+ * @Date: 2023-12-02   17:23
  */
+
 @Data
 public class RpcMessage {
 

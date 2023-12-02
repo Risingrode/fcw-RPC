@@ -1,11 +1,12 @@
 package com.wxy.rpc.core.exception;
 
 /**
- * @author Wuxy
- * @version 1.0
- * @ClassName SerializeException
- * @Date 2023/1/5 16:03
+ *
+ * @Author: fcw
+ * @Description:
+ * @Date: 2023-12-02   19:01
  */
+
 public class SerializeException extends RuntimeException {
 
     private static final long serialVersionUID = 3365624081242234232L;

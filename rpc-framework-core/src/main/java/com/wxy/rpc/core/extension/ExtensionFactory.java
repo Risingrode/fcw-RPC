@@ -1,13 +1,12 @@
 package com.wxy.rpc.core.extension;
 
 /**
- * Extension 工厂类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName ExtensionFactory
- * @Date 2023/1/11 22:30
+ * @Author: fcw
+ * @Description: Extension 工厂类
+ * @Date: 2023-12-02   19:15
  */
+
 @SPI
 public interface ExtensionFactory {
 

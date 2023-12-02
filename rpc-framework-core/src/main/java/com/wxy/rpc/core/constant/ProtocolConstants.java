@@ -3,13 +3,12 @@ package com.wxy.rpc.core.constant;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 协议常量类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName ProtocolConstant
- * @Date 2023/1/5 17:32
+ * @Author: fcw
+ * @Description: 协议常量类
+ * @Date: 2023-12-02   18:09
  */
+
 public class ProtocolConstants {
     // 序列号
     private static final AtomicInteger ai = new AtomicInteger();

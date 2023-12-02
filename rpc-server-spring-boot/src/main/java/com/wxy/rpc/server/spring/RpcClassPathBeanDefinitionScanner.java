@@ -7,13 +7,12 @@ import org.springframework.core.type.filter.AnnotationTypeFilter;
 import java.lang.annotation.Annotation;
 
 /**
- * 类路径下的包扫描器
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName RpcClassPathBeanDefinitionScanner
- * @Date 2023/1/9 17:56
+ * @Author: fcw
+ * @Description: 类路径下的包扫描器
+ * @Date: 2023-11-30   10:57
  */
+
 // ClassPathBeanDefinitionScanner 是 Spring 提供的类路径下的包扫描器
 public class RpcClassPathBeanDefinitionScanner extends ClassPathBeanDefinitionScanner {
 
@@ -45,6 +44,7 @@ public class RpcClassPathBeanDefinitionScanner extends ClassPathBeanDefinitionSc
     }
 
     @Override
+    // 它允许你在调用方法时传入任意数量的参数，这些参数会被自动组装成一个数组
     public int scan(String... basePackages) {
         return super.scan(basePackages);
     }

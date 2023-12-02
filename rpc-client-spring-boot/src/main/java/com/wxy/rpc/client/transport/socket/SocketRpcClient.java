@@ -13,15 +13,12 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 
 /**
- * 基于 Socket 实现 RpcClient 类
- * <p>
- *     SocketClient 发送和接受的数据为：RpcRequest, RpcResponse
- * </p>
- * @author Wuxy
- * @version 1.0
- * @ClassName SocketRpcClient
- * @Date 2023/1/12 13:36
+ *
+ * @Author: fcw
+ * @Description: 基于 Socket 实现 RpcClient 类
+ * @Date: 2023-12-02   12:53
  */
+
 public class SocketRpcClient implements RpcClient {
 
     @Override
@@ -37,6 +34,7 @@ public class SocketRpcClient implements RpcClient {
             oos.writeObject(requestMetadata.getRpcMessage().getBody());
             oos.flush();
             // 阻塞等待服务端的响应
+            // 下面这个接收到 oos.writeObject(response) 里面的内容
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
             RpcResponse response = (RpcResponse) ois.readObject();
             // 封装成 RpcMessage 对象

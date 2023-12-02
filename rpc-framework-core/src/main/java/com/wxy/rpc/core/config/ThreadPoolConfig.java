@@ -7,13 +7,12 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 线程池配置类
  *
- * @author Wuxy
- * @version 1.0
- * @ClassName ThreadPoolConfig
- * @Date 2023/1/12 12:19
+ * @Author: fcw
+ * @Description: 线程池配置类
+ * @Date: 2023-12-02   18:07
  */
+
 @Data
 public class ThreadPoolConfig {
     // 线程池默认参数
@@ -64,7 +63,7 @@ public class ThreadPoolConfig {
     private TimeUnit timeUnit = DEFAULT_TIME_UNIT;
 
     /**
-     * 有界阻塞队列
+     * 有界阻塞队列 线程安全
      */
     private BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(DEFAULT_BLOCKING_QUEUE_SIZE);
 }
